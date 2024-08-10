@@ -14,3 +14,6 @@ router.post('/libro', libro.add);
 
 //ruta para actualizar libro
 router.put('/libro', libro.update);
+
+//ruta para eliminar libro
+router.delete('/libro', libro.delete);

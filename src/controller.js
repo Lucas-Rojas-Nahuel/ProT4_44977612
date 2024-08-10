@@ -48,12 +48,32 @@ class LibroController {
             if (result.affectedRows === 0){
                 return res.json({error: 'Libro no encontrado'});
             }
-            
+
             res.json({'Libro actualizado': result.changedRows});
         }catch (err){
             res.json({error: err.meassge})
         }
     }
+
+    //Eliminar libro 
+    async delete(req, res){
+        const libro= req.body;
+        const {ISBN}= req.params;
+
+        try{
+            const[result]= await pool.query('DELETE FROM libros WHERE ISBN = ?', [libro.ISBN])
+            //preguntamos si hubo libros elininados
+            if (result.affectedRows === 0){
+                return res.json({error: 'Libro no encontrado'})
+            }
+
+            res.json({'Libro eliminado': result.affectedRows})
+        }catch(err){
+            res.json({error: err.meassge});
+        }
+    }
+
+    
 }
 
 export const libro = new LibroController();
