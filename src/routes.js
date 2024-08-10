@@ -11,3 +11,6 @@ router.get('/libro/:id', libro.getOne);
 
 //ruta para agregar libros
 router.post('/libro', libro.add);
+
+//ruta para actualizar libro
+router.put('/libro', libro.update);
